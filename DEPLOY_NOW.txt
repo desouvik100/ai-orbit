@@ -1,0 +1,179 @@
+================================================================================
+        AI ORBIT COMPANIES - VERCEL DEPLOYMENT INSTRUCTIONS
+================================================================================
+
+Your backend is ready to deploy! Follow these steps EXACTLY:
+
+================================================================================
+OPTION 1: DEPLOY VIA VERCEL DASHBOARD (EASIEST - RECOMMENDED)
+================================================================================
+
+1. PUSH TO GITHUB
+   -------------
+   If you haven't already:
+   
+   a. Create a new repository on GitHub:
+      https://github.com/new
+      Name it: ai-orbit-companies
+   
+   b. Run these commands in your terminal:
+      
+      git remote add origin https://github.com/YOUR_USERNAME/ai-orbit-companies.git
+      git branch -M main
+      git push -u origin main
+
+2. DEPLOY TO VERCEL
+   ----------------
+   a. Go to: https://vercel.com/new
+   
+   b. Click "Import Git Repository"
+   
+   c. Connect your GitHub account if needed
+   
+   d. Select the "ai-orbit-companies" repository
+   
+   e. Click "Import"
+   
+   f. Keep all default settings (Next.js auto-detected)
+   
+   g. Click "Deploy"
+   
+   ⚠️  First deployment may fail - this is OK! We'll fix it in the next step.
+
+3. SET UP DATABASE
+   ---------------
+   Choose ONE option:
+   
+   OPTION A - Vercel Postgres (Easiest):
+   
+   a. In Vercel dashboard, click "Storage" tab
+   b. Click "Create Database"
+   c. Select "Postgres"
+   d. Name it: ai-orbit-db
+   e. Select same region as your app
+   f. Click "Create"
+   g. Click "Connect" to link to your project
+   
+   OPTION B - Supabase (Free):
+   
+   a. Go to https://supabase.com
+   b. Create new project
+   c. Wait for database setup (~2 min)
+   d. Go to Settings → Database
+   e. Copy "Connection string"
+   f. Replace [YOUR-PASSWORD] with your password
+   g. In Vercel: Settings → Environment Variables
+   h. Add DATABASE_URL with the connection string
+
+4. INITIALIZE DATABASE (RUN LOCALLY)
+   ----------------------------------
+   Open your terminal and run:
+   
+   npm install -g vercel
+   vercel login
+   vercel link
+   vercel env pull .env.local
+   npm run db:push
+   npm run db:seed
+   
+   You should see: "✅ Seed completed successfully!"
+
+5. REDEPLOY
+   --------
+   a. Go to Vercel dashboard → Your Project
+   b. Click "Deployments" tab
+   c. Click the three dots "..." on latest deployment
+   d. Click "Redeploy"
+   e. Wait for deployment to complete
+
+6. TEST YOUR API
+   -------------
+   Open in browser or use curl:
+   
+   https://YOUR-PROJECT-NAME.vercel.app/api/companies
+   https://YOUR-PROJECT-NAME.vercel.app/api/companies/openai
+
+================================================================================
+OPTION 2: DEPLOY VIA VERCEL CLI
+================================================================================
+
+Run these commands in order:
+
+1. npm install -g vercel
+2. vercel login
+3. vercel
+4. vercel env add DATABASE_URL
+5. vercel env pull .env.local
+6. npm run db:push
+7. npm run db:seed
+8. vercel --prod
+
+================================================================================
+AFTER DEPLOYMENT
+================================================================================
+
+Your API will be live at:
+
+https://YOUR-PROJECT-NAME.vercel.app
+
+Test these endpoints:
+
+✓ GET /api/companies
+  - List all companies with pagination
+  
+✓ GET /api/companies?search=AI
+  - Search for companies
+  
+✓ GET /api/companies?companyType=STARTUP
+  - Filter by company type
+  
+✓ GET /api/companies/openai
+  - Get specific company details
+
+================================================================================
+SHARE WITH FRONTEND TEAM (Antigravity)
+================================================================================
+
+Once deployed, share:
+
+1. Production API URL: https://YOUR-PROJECT-NAME.vercel.app
+
+2. API Documentation: README.md
+
+3. Endpoints:
+   - GET /api/companies (list, search, filter, sort, paginate)
+   - GET /api/companies/[slug] (company detail)
+
+4. Example response structure (from README.md)
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Problem: Build fails
+Solution: Make sure DATABASE_URL is set in environment variables
+
+Problem: 500 error on API
+Solution: Database not seeded. Run: npm run db:seed
+
+Problem: npm commands fail
+Solution: Run: npm install
+
+For detailed help, see:
+- QUICK_DEPLOY.md (step-by-step guide)
+- DEPLOYMENT.md (comprehensive guide)
+- README.md (API documentation)
+
+================================================================================
+NEXT COMMANDS TO RUN
+================================================================================
+
+To deploy right now, open your terminal and run:
+
+1. npm install -g vercel
+2. vercel login
+3. vercel
+
+Or follow QUICK_DEPLOY.md for dashboard deployment.
+
+================================================================================
