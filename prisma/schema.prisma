@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CompanyType {
+  STARTUP
+  ENTERPRISE
+  RESEARCH
+  NONPROFIT
+}
+
+enum CompanyStatus {
+  ACTIVE
+  ACQUIRED
+  CLOSED
+}
+
+enum EmployeeRange {
+  SOLO_1
+  SMALL_2_10
+  MEDIUM_11_50
+  LARGE_51_200
+  XLARGE_201_500
+  ENTERPRISE_501_PLUS
+}
+
+model Company {
+  id               String         @id @default(cuid())
+  name             String
+  slug             String         @unique
+  shortDescription String
+  description      String         @db.Text
+  logo             String?
+  website          String
+  headquarters     String
+  foundedYear      Int?
+  industry         String
+  companyType      CompanyType
+  employeeRange    EmployeeRange?
+  status           CompanyStatus  @default(ACTIVE)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  // Relations
+  products         Product[]
+  categories       CompanyCategory[]
+  
+  // Self-referential many-to-many for related companies
+  relatedCompanies CompanyRelation[] @relation("CompanyRelations")
+  relatedToCompanies CompanyRelation[] @relation("RelatedCompanies")
+
+  @@index([slug])
+  @@index([industry])
+  @@index([companyType])
+  @@index([status])
+  @@index([name])
+  @@index([foundedYear])
+}
+
+model Category {
+  id          String            @id @default(cuid())
+  name        String            @unique
+  slug        String            @unique
+  description String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  companies   CompanyCategory[]
+
+  @@index([slug])
+}
+
+model CompanyCategory {
+  id         String   @id @default(cuid())
+  companyId  String
+  categoryId String
+  createdAt  DateTime @default(now())
+
+  company  Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, categoryId])
+  @@index([companyId])
+  @@index([categoryId])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  companyId   String
+  name        String
+  slug        String
+  description String   @db.Text
+  website     String?
+  logo        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, slug])
+  @@index([companyId])
+  @@index([slug])
+}
+
+model CompanyRelation {
+  id                String   @id @default(cuid())
+  companyId         String
+  relatedCompanyId  String
+  createdAt         DateTime @default(now())
+
+  company         Company @relation("CompanyRelations", fields: [companyId], references: [id], onDelete: Cascade)
+  relatedCompany  Company @relation("RelatedCompanies", fields: [relatedCompanyId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, relatedCompanyId])
+  @@index([companyId])
+  @@index([relatedCompanyId])
+}
