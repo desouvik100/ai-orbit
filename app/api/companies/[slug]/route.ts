@@ -14,7 +14,6 @@ export async function GET(request: NextRequest, { params }: Params) {
     const { slug } = params
 
     try {
-      // Fetch company with all related data from Prisma
       const company = await prisma.company.findUnique({
         where: { slug },
         include: {

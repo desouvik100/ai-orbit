@@ -84,7 +84,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
     }
   }
 
-  // 404 State
   if (notFound) {
     return (
       <div className="clean-state-panel" style={{ marginTop: '48px' }}>
@@ -99,7 +98,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
     )
   }
 
-  // Error State
   if (error) {
     return (
       <div className="clean-state-panel" style={{ marginTop: '48px' }}>
@@ -117,7 +115,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
     )
   }
 
-  // Skeleton Loading State
   if (loading || !company) {
     return (
       <div style={{ padding: '16px 0 40px' }}>
@@ -156,7 +153,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
 
   return (
     <div style={{ padding: '16px 0 48px' }}>
-      {/* Breadcrumb Navigation */}
       <Link
         href="/companies"
         style={{
@@ -171,7 +167,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
         <span style={{ fontSize: 13 }}>←</span> Companies
       </Link>
 
-      {/* Compact Profile Header */}
       <div className="profile-head-card">
         <div className="profile-top-section">
           <div className="profile-title-row">
@@ -198,7 +193,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
             </div>
           </div>
 
-          {/* Action Row */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             <button
               type="button"
@@ -243,11 +237,8 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
         </div>
       </div>
 
-      {/* Main Grid: Content + Facts Sidebar */}
       <div className="profile-content-grid">
-        {/* Main Column */}
         <div>
-          {/* About Section */}
           <section className="section-panel">
             <h2 className="section-heading-editorial">Overview</h2>
             <div className="editorial-prose">
@@ -255,7 +246,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
             </div>
           </section>
 
-          {/* Products / Offerings */}
           {company.products && company.products.length > 0 && (
             <section className="section-panel">
               <h2 className="section-heading-editorial">
@@ -289,7 +279,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
             </section>
           )}
 
-          {/* Related Companies */}
           {company.relatedCompanies && company.relatedCompanies.length > 0 && (
             <section className="section-panel">
               <h2 className="section-heading-editorial">
@@ -309,7 +298,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
           )}
         </div>
 
-        {/* Sidebar Column */}
         <div>
           <div className="section-panel">
             <h2 className="section-heading-editorial" style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -360,7 +348,6 @@ export function CompanyDetailView({ slug }: CompanyDetailViewProps) {
             </div>
           </div>
 
-          {/* Categories */}
           {company.categories && company.categories.length > 0 && (
             <div className="section-panel">
               <h2 className="section-heading-editorial" style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em' }}>

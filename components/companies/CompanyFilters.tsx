@@ -36,7 +36,6 @@ export function CompanyFilters({
 }: CompanyFiltersProps) {
   return (
     <div className="discovery-filters-wrap">
-      {/* Industry Select */}
       <div className="select-box-wrap">
         <select
           value={industry}
@@ -58,7 +57,6 @@ export function CompanyFilters({
         </div>
       </div>
 
-      {/* Company Type Select */}
       <div className="select-box-wrap">
         <select
           value={companyType}
@@ -80,7 +78,6 @@ export function CompanyFilters({
       </div>
 
 
-      {/* Sort Select */}
       <div className="select-box-wrap">
         <select
           value={sort}

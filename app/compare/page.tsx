@@ -16,7 +16,6 @@ export default function ComparePage() {
   const [detailedCompanies, setDetailedCompanies] = useState<FullComparisonItem[]>([])
   const [loading, setLoading] = useState(false)
 
-  // Fetch full details (for products) for the compared companies
   useEffect(() => {
     if (compareList.length === 0) {
       setDetailedCompanies([])
@@ -86,7 +85,6 @@ export default function ComparePage() {
 
   return (
     <main className="site-container" style={{ paddingBottom: '64px' }}>
-      {/* Editorial Header */}
       <header className="page-head-compact">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12 }}>
           <div>
@@ -122,10 +120,8 @@ export default function ComparePage() {
         </div>
       </header>
 
-      {/* Comparison Body */}
       <section style={{ paddingTop: '16px' }}>
         {compareList.length === 0 ? (
-          /* Empty State */
           <div className="discovery-empty-state">
             <div className="empty-state-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -143,7 +139,6 @@ export default function ComparePage() {
             </div>
           </div>
         ) : (
-          /* Comparison Table */
           <div className="compare-table-wrapper">
             <table className="compare-table">
               <thead>
@@ -185,7 +180,6 @@ export default function ComparePage() {
                 </tr>
               </thead>
               <tbody>
-                {/* Description */}
                 <tr>
                   <td className="compare-label-cell">Overview</td>
                   {detailedCompanies.map((c) => (
@@ -195,7 +189,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Industry */}
                 <tr>
                   <td className="compare-label-cell">Industry</td>
                   {detailedCompanies.map((c) => (
@@ -205,7 +198,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Type */}
                 <tr>
                   <td className="compare-label-cell">Company Type</td>
                   {detailedCompanies.map((c) => (
@@ -215,7 +207,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Headquarters */}
                 <tr>
                   <td className="compare-label-cell">Headquarters</td>
                   {detailedCompanies.map((c) => (
@@ -225,7 +216,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Founded */}
                 <tr>
                   <td className="compare-label-cell">Founded</td>
                   {detailedCompanies.map((c) => (
@@ -235,7 +225,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Team Size */}
                 <tr>
                   <td className="compare-label-cell">Team Size</td>
                   {detailedCompanies.map((c) => (
@@ -245,7 +234,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Key Products */}
                 <tr>
                   <td className="compare-label-cell">Products &amp; Models</td>
                   {detailedCompanies.map((c) => (
@@ -270,7 +258,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                {/* Profile Link */}
                 <tr>
                   <td className="compare-label-cell">Full Profile</td>
                   {detailedCompanies.map((c) => (

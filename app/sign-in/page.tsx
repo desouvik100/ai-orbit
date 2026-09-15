@@ -46,7 +46,6 @@ function SignInForm() {
   return (
     <div className="auth-page-wrapper">
       <div className="auth-product-frame">
-        {/* Brand Row */}
         <div className="auth-brand-row">
           <Link href="/companies" className="brand-link">
             <div className="brand-logo-mark">
@@ -59,7 +58,6 @@ function SignInForm() {
         <h1 className="auth-headline">Sign in</h1>
         <p className="auth-subhead">Access your AI Orbit account.</p>
 
-        {/* Auth Form Container */}
         <div className="auth-form-body">
           {error && (
             <div className="auth-error-notice" role="alert">

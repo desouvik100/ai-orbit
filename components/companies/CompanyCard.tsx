@@ -51,7 +51,6 @@ export function CompanyCard({ company, viewMode = 'list' }: CompanyCardProps) {
   }
 
 
-  // Metadata line: e.g. "Startup · San Francisco, CA"
   const metaParts: string[] = []
   if (company.companyType) metaParts.push(formatCompanyType(company.companyType))
   if (company.headquarters) metaParts.push(company.headquarters)
@@ -126,7 +125,6 @@ export function CompanyCard({ company, viewMode = 'list' }: CompanyCardProps) {
     )
   }
 
-  // Grid Card
   return (
     <div className="card-item-grid">
       <div>

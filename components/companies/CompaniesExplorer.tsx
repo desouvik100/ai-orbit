@@ -149,7 +149,6 @@ export function CompaniesExplorer() {
 
   return (
     <div style={{ paddingBottom: '32px' }}>
-      {/* Discovery Controls Bar */}
       <div className="discovery-bar">
         <CompanySearch value={search} onChange={handleSearchChange} />
 
@@ -168,7 +167,6 @@ export function CompaniesExplorer() {
         </div>
       </div>
 
-      {/* Active Filter Chips & Summary */}
       <div className="filter-summary-row">
         <div className="filter-chips-list">
           {hasActiveFilters && (
@@ -238,7 +236,6 @@ export function CompaniesExplorer() {
         )}
       </div>
 
-      {/* Main Results Body */}
       {loading ? (
         <CompanySkeleton viewMode={viewMode} count={viewMode === 'list' ? 8 : 9} />
       ) : error ? (

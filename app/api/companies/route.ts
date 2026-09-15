@@ -7,7 +7,6 @@ import { FALLBACK_COMPANIES } from '@/lib/fallback-data'
 
 export async function GET(request: NextRequest) {
   try {
-    // Parse and validate query parameters
     const searchParams = Object.fromEntries(request.nextUrl.searchParams)
     const validation = validateQuery(companiesQuerySchema, searchParams)
 
@@ -18,7 +17,6 @@ export async function GET(request: NextRequest) {
     const { search, industry, companyType, status, sort, page, limit } = validation.data
 
     try {
-      // Build where clause for filtering in Prisma
       const where: Prisma.CompanyWhereInput = {}
 
       if (search) {
@@ -102,7 +100,6 @@ export async function GET(request: NextRequest) {
     } catch (dbError) {
       console.warn('Database unreachable, serving from seed fallback records:', dbError)
 
-      // In-memory filter matching identical Prisma query behavior
       let filtered = [...FALLBACK_COMPANIES]
 
       if (search) {
@@ -128,7 +125,6 @@ export async function GET(request: NextRequest) {
         filtered = filtered.filter((c) => c.status === status)
       }
 
-      // In-memory sorting
       filtered.sort((a, b) => {
         if (sort === 'newest') {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

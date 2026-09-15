@@ -1,12 +1,3 @@
-/**
- * Verification Script for AI Orbit Companies Backend
- * 
- * This script helps verify that the backend is set up correctly.
- * Run after: npm install && npm run db:push && npm run db:seed
- * 
- * Usage: node verify-setup.js
- */
-
 const BASE_URL = 'http://localhost:3000'
 
 const tests = [
@@ -131,7 +122,6 @@ async function runTests() {
   }
 }
 
-// Check if fetch is available (Node.js 18+)
 if (typeof fetch === 'undefined') {
   console.log('❌ This script requires Node.js 18 or higher (for native fetch)')
   console.log('\nAlternatively, test manually:')

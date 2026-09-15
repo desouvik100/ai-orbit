@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -49,11 +46,9 @@ model Company {
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
 
-  // Relations
   products         Product[]
   categories       CompanyCategory[]
   
-  // Self-referential many-to-many for related companies
   relatedCompanies CompanyRelation[] @relation("CompanyRelations")
   relatedToCompanies CompanyRelation[] @relation("RelatedCompanies")
 

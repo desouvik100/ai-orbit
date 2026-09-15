@@ -17,7 +17,6 @@ export default function SavedCompaniesPage() {
 
   return (
     <main className="site-container" style={{ paddingBottom: '48px' }}>
-      {/* Compact Editorial Header */}
       <header className="page-head-compact">
         <h1 className="page-head-title">Saved Companies</h1>
         <p className="page-head-desc">
@@ -25,12 +24,10 @@ export default function SavedCompaniesPage() {
         </p>
       </header>
 
-      {/* Content Section */}
       <section style={{ paddingTop: '8px' }}>
         {loading ? (
           <CompanySkeleton viewMode={viewMode} count={4} />
         ) : !user ? (
-          /* Logged-out State */
           <div className="discovery-empty-state">
             <div className="empty-state-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -51,7 +48,6 @@ export default function SavedCompaniesPage() {
             </div>
           </div>
         ) : savedCompanies.length === 0 ? (
-          /* Empty State */
           <div className="discovery-empty-state">
             <div className="empty-state-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -69,9 +65,7 @@ export default function SavedCompaniesPage() {
             </div>
           </div>
         ) : (
-          /* Active Saved Companies List */
           <div>
-            {/* Header Control Row */}
             <div
               style={{
                 display: 'flex',
@@ -88,7 +82,6 @@ export default function SavedCompaniesPage() {
               <ViewToggle viewMode={viewMode} onChange={setViewMode} />
             </div>
 
-            {/* List / Grid Container */}
             <div className={viewMode === 'list' ? 'companies-list-view' : 'companies-grid-view'}>
               {savedCompanies.map((company) => (
                 <CompanyCard key={company.id} company={company} viewMode={viewMode} />

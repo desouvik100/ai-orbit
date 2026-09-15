@@ -41,7 +41,6 @@ export function CompanyLogo({ name, logo, size = 36, className = '' }: CompanyLo
       }}
     >
       {!showFallback ? (
-        /* eslint-disable-next-line @next/next/no-img-element */
         <img
           src={logo!}
           alt={`${name} logo`}

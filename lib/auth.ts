@@ -7,7 +7,6 @@ export interface AuthUser {
   createdAt?: string
 }
 
-// In-memory user store for demo/development when database user table is not yet migrated
 const registeredUsers: Map<string, { id: string; name: string; email: string; passwordHash: string }> = new Map([
   [
     'demo@aiorbit.club',
@@ -46,7 +45,7 @@ export function registerUser(name: string, email: string, password: string): Aut
     id,
     name: name.trim(),
     email: normalizedEmail,
-    passwordHash: password, // In production this would use bcrypt/argon2
+    passwordHash: password,
   }
 
   registeredUsers.set(normalizedEmail, user)

@@ -2,8 +2,6 @@ import { prisma } from './prisma'
 import { FALLBACK_COMPANIES } from './fallback-data'
 import { CompanyListItem } from './types'
 
-// In-memory persistent map for user saved companies during runtime
-// Keys are userId, values are Set of company slugs
 const userSavedStore: Map<string, Set<string>> = new Map([
   ['usr_demo', new Set(['openai', 'anthropic'])],
 ])
@@ -64,7 +62,6 @@ export async function getSavedCompanyItems(userId: string): Promise<CompanyListI
       }))
     }
   } catch {
-    // Database unreachable, fall back to seed data
   }
 
   return FALLBACK_COMPANIES.filter((c) => slugs.includes(c.slug))

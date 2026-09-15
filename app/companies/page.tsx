@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 export default function CompaniesPage() {
   return (
     <main className="site-container">
-      {/* Compact Editorial Header */}
       <header className="page-head-compact">
         <h1 className="page-head-title">AI Companies</h1>
         <p className="page-head-desc">
@@ -20,7 +19,6 @@ export default function CompaniesPage() {
         </p>
       </header>
 
-      {/* Discovery Workbench */}
       <section style={{ paddingTop: '8px' }}>
         <Suspense fallback={<CompanySkeleton viewMode="list" count={8} />}>
           <CompaniesExplorer />

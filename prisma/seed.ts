@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('🌱 Starting seed...')
 
-  // Clear existing data
   await prisma.companyRelation.deleteMany()
   await prisma.companyCategory.deleteMany()
   await prisma.product.deleteMany()
@@ -14,7 +13,6 @@ async function main() {
 
   console.log('✓ Cleared existing data')
 
-  // Create categories
   const categories = await Promise.all([
     prisma.category.create({
       data: {
@@ -76,9 +74,8 @@ async function main() {
 
   console.log('✓ Created categories')
 
-  // Create companies with realistic data
   const companies = await Promise.all([
-    // OpenAI
+
     prisma.company.create({
       data: {
         name: 'OpenAI',
@@ -95,7 +92,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // Anthropic
+
     prisma.company.create({
       data: {
         name: 'Anthropic',
@@ -112,7 +109,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // Google DeepMind
+
     prisma.company.create({
       data: {
         name: 'Google DeepMind',
@@ -129,7 +126,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // Mistral AI
+
     prisma.company.create({
       data: {
         name: 'Mistral AI',
@@ -741,7 +738,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // Anyscale
+
     prisma.company.create({
       data: {
         name: 'Anyscale',
@@ -758,7 +755,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // OctoML
+
     prisma.company.create({
       data: {
         name: 'OctoML',
@@ -775,7 +772,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // Assembly AI
+
     prisma.company.create({
       data: {
         name: 'AssemblyAI',
@@ -792,7 +789,7 @@ async function main() {
         status: 'ACTIVE',
       },
     }),
-    // Deepgram
+
     prisma.company.create({
       data: {
         name: 'Deepgram',
@@ -881,10 +878,8 @@ async function main() {
 
   console.log(`✓ Created ${companies.length} companies`)
 
-  // Create products for select companies
   const products = []
 
-  // OpenAI products
   products.push(
     await prisma.product.create({
       data: {
@@ -915,7 +910,6 @@ async function main() {
     })
   )
 
-  // Anthropic products
   products.push(
     await prisma.product.create({
       data: {
@@ -928,7 +922,6 @@ async function main() {
     })
   )
 
-  // Stability AI products
   products.push(
     await prisma.product.create({
       data: {
@@ -943,10 +936,8 @@ async function main() {
 
   console.log(`✓ Created ${products.length} products`)
 
-  // Link companies to categories
   const companyCategories = []
 
-  // Helper function to link company to category
   const linkCategory = async (companyIndex: number, categoryName: string) => {
     const category = categories.find((c) => c.name === categoryName)
     if (category) {
@@ -962,97 +953,95 @@ async function main() {
   }
 
   // Link categories
-  await linkCategory(0, 'Large Language Models') // OpenAI
+  await linkCategory(0, 'Large Language Models')
   await linkCategory(0, 'Generative AI')
   await linkCategory(0, 'AI Research')
 
-  await linkCategory(1, 'Large Language Models') // Anthropic
+  await linkCategory(1, 'Large Language Models')
   await linkCategory(1, 'AI Safety')
   await linkCategory(1, 'AI Research')
 
-  await linkCategory(2, 'AI Research') // DeepMind
+  await linkCategory(2, 'AI Research')
   await linkCategory(2, 'AI Safety')
 
-  await linkCategory(3, 'Large Language Models') // Mistral
+  await linkCategory(3, 'Large Language Models')
   await linkCategory(3, 'Generative AI')
 
-  await linkCategory(4, 'Large Language Models') // Cohere
+  await linkCategory(4, 'Large Language Models')
   await linkCategory(4, 'Enterprise AI')
 
-  await linkCategory(5, 'AI Infrastructure') // Hugging Face
+  await linkCategory(5, 'AI Infrastructure')
 
-  await linkCategory(6, 'Generative AI') // Stability AI
+  await linkCategory(6, 'Generative AI')
   await linkCategory(6, 'Computer Vision')
 
-  await linkCategory(7, 'Generative AI') // Midjourney
+  await linkCategory(7, 'Generative AI')
   await linkCategory(7, 'Computer Vision')
 
-  await linkCategory(8, 'AI Infrastructure') // Replicate
+  await linkCategory(8, 'AI Infrastructure')
 
-  await linkCategory(9, 'AI Infrastructure') // Scale AI
+  await linkCategory(9, 'AI Infrastructure')
 
-  await linkCategory(10, 'Generative AI') // Runway
+  await linkCategory(10, 'Generative AI')
 
-  await linkCategory(11, 'AI Agents') // Character.AI
+  await linkCategory(11, 'AI Agents')
 
-  await linkCategory(12, 'AI Agents') // Perplexity
+  await linkCategory(12, 'AI Agents')
 
-  await linkCategory(13, 'AI Agents') // Adept
+  await linkCategory(13, 'AI Agents')
 
-  await linkCategory(14, 'AI Agents') // Inflection
+  await linkCategory(14, 'AI Agents')
 
-  await linkCategory(15, 'Generative AI') // Synthesia
+  await linkCategory(15, 'Generative AI')
 
-  await linkCategory(16, 'Generative AI') // ElevenLabs
+  await linkCategory(16, 'Generative AI')
 
-  await linkCategory(17, 'AI Infrastructure') // Together AI
+  await linkCategory(17, 'AI Infrastructure')
 
-  await linkCategory(18, 'AI Infrastructure') // Weights & Biases
+  await linkCategory(18, 'AI Infrastructure')
 
-  await linkCategory(19, 'Large Language Models') // AI21
+  await linkCategory(19, 'Large Language Models')
 
-  await linkCategory(20, 'Enterprise AI') // Jasper
+  await linkCategory(20, 'Enterprise AI')
 
-  await linkCategory(21, 'Enterprise AI') // Notion
+  await linkCategory(21, 'Enterprise AI')
 
-  await linkCategory(22, 'Enterprise AI') // Grammarly
+  await linkCategory(22, 'Enterprise AI')
 
-  await linkCategory(23, 'Enterprise AI') // Copy.ai
+  await linkCategory(23, 'Enterprise AI')
 
-  await linkCategory(24, 'Enterprise AI') // Writesonic
+  await linkCategory(24, 'Enterprise AI')
 
-  await linkCategory(25, 'Enterprise AI') // Harvey
+  await linkCategory(25, 'Enterprise AI')
 
-  await linkCategory(26, 'Enterprise AI') // Glean
+  await linkCategory(26, 'Enterprise AI')
 
-  await linkCategory(32, 'AI Infrastructure') // Vercel
+  await linkCategory(32, 'AI Infrastructure')
 
-  await linkCategory(33, 'AI Infrastructure') // LangChain
+  await linkCategory(33, 'AI Infrastructure')
 
-  await linkCategory(34, 'AI Infrastructure') // Pinecone
+  await linkCategory(34, 'AI Infrastructure')
 
-  await linkCategory(35, 'AI Infrastructure') // Weaviate
+  await linkCategory(35, 'AI Infrastructure')
 
-  await linkCategory(36, 'AI Infrastructure') // Chroma
+  await linkCategory(36, 'AI Infrastructure')
 
-  await linkCategory(37, 'AI Infrastructure') // Qdrant
+  await linkCategory(37, 'AI Infrastructure')
 
-  await linkCategory(38, 'AI Infrastructure') // Modal
+  await linkCategory(38, 'AI Infrastructure')
 
-  await linkCategory(39, 'AI Infrastructure') // Anyscale
+  await linkCategory(39, 'AI Infrastructure')
 
-  await linkCategory(40, 'AI Infrastructure') // OctoML
+  await linkCategory(40, 'AI Infrastructure')
 
-  await linkCategory(43, 'Computer Vision') // Roboflow
+  await linkCategory(43, 'Computer Vision')
 
-  await linkCategory(44, 'Computer Vision') // Landing AI
+  await linkCategory(44, 'Computer Vision')
 
   console.log(`✓ Created ${companyCategories.length} company-category links`)
 
-  // Create related company relationships
   const relations = []
 
-  // Helper to create bidirectional relations
   const relate = async (index1: number, index2: number) => {
     relations.push(
       await prisma.companyRelation.create({
@@ -1064,37 +1053,31 @@ async function main() {
     )
   }
 
-  // LLM companies related to each other
-  await relate(0, 1) // OpenAI - Anthropic
-  await relate(0, 3) // OpenAI - Mistral
-  await relate(0, 4) // OpenAI - Cohere
-  await relate(1, 3) // Anthropic - Mistral
-  await relate(1, 4) // Anthropic - Cohere
+  await relate(0, 1)
+  await relate(0, 3)
+  await relate(0, 4)
+  await relate(1, 3)
+  await relate(1, 4)
 
-  // Generative AI image companies
-  await relate(6, 7) // Stability - Midjourney
-  await relate(6, 10) // Stability - Runway
-  await relate(7, 10) // Midjourney - Runway
+  await relate(6, 7)
+  await relate(6, 10)
+  await relate(7, 10)
 
-  // AI Agents
-  await relate(11, 12) // Character.AI - Perplexity
-  await relate(11, 13) // Character.AI - Adept
-  await relate(12, 13) // Perplexity - Adept
+  await relate(11, 12)
+  await relate(11, 13)
+  await relate(12, 13)
 
-  // Infrastructure companies
-  await relate(5, 8) // Hugging Face - Replicate
-  await relate(5, 17) // Hugging Face - Together AI
-  await relate(8, 17) // Replicate - Together AI
+  await relate(5, 8)
+  await relate(5, 17)
+  await relate(8, 17)
 
-  // Vector databases
-  await relate(34, 35) // Pinecone - Weaviate
-  await relate(34, 36) // Pinecone - Chroma
-  await relate(35, 37) // Weaviate - Qdrant
+  await relate(34, 35)
+  await relate(34, 36)
+  await relate(35, 37)
 
-  // Dev tools
-  await relate(27, 28) // Cursor - GitHub
-  await relate(27, 29) // Cursor - Replit
-  await relate(28, 30) // GitHub - Tabnine
+  await relate(27, 28)
+  await relate(27, 29)
+  await relate(28, 30)
 
   console.log(`✓ Created ${relations.length} company relations`)
 
