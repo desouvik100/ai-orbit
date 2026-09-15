@@ -952,7 +952,6 @@ async function main() {
     }
   }
 
-  // Link categories
   await linkCategory(0, 'Large Language Models')
   await linkCategory(0, 'Generative AI')
   await linkCategory(0, 'AI Research')
