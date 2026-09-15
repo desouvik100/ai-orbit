@@ -23,7 +23,6 @@ export function Navbar() {
     <header className="site-header">
       <div className="site-container">
         <div className="header-inner">
-          {/* Brand Logo */}
           <div className="header-left">
             <button
               type="button"
@@ -56,7 +55,6 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Navigation Links */}
           <nav className="header-nav" aria-label="Main navigation">
             <Link
               href="/companies"
@@ -93,7 +91,6 @@ export function Navbar() {
             </span>
           </nav>
 
-          {/* Right Header Actions */}
           <div className="header-actions">
             {!loading && (
               <>
@@ -142,7 +139,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
         {mobileOpen && (
           <div className="mobile-nav-panel">
             <Link

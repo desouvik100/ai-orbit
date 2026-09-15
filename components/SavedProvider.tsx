@@ -81,7 +81,6 @@ export function SavedProvider({ children }: { children: React.ReactNode }) {
     const currentlySaved = savedSlugs.has(slug)
     const nextSaved = !currentlySaved
 
-    // Optimistic UI update
     setSavedSlugs((prev) => {
       const next = new Set(prev)
       if (nextSaved) next.add(slug)
@@ -114,7 +113,6 @@ export function SavedProvider({ children }: { children: React.ReactNode }) {
       return nextSaved
     } catch (err) {
       console.error('Failed to update saved company on server:', err)
-      // Revert optimistic update
       setSavedSlugs((prev) => {
         const reverted = new Set(prev)
         if (currentlySaved) reverted.add(slug)

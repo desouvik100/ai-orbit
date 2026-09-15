@@ -27,7 +27,6 @@ export function CompareProvider({ children }: { children: React.ReactNode }) {
   const [compareList, setCompareList] = useState<CompanyListItem[]>([])
   const [compareNotice, setCompareNotice] = useState<string | null>(null)
 
-  // Initialize from session storage if present
   useEffect(() => {
     try {
       const stored = sessionStorage.getItem('ai_orbit_compare')
@@ -38,17 +37,14 @@ export function CompareProvider({ children }: { children: React.ReactNode }) {
         }
       }
     } catch {
-      // Ignore session storage errors
     }
   }, [])
 
-  // Sync to session storage
   const updateList = useCallback((list: CompanyListItem[]) => {
     setCompareList(list)
     try {
       sessionStorage.setItem('ai_orbit_compare', JSON.stringify(list))
     } catch {
-      // Ignore session storage errors
     }
   }, [])
 
